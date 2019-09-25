@@ -14,7 +14,8 @@
 <h1>Request请求携带参数一览</h1>
 <h2>servletRequest接口定义的方法</h2>
 <div>
-    <tr><td>参数名</td><td>参数值</td></tr>
+    <table border="2px">
+    <th>参数名</th><th>参数值</th>
 
     <tr><td>--</td><td><% request.getAttribute("message");%></td></tr>
     <tr><td>--</td><td><% request.getAttributeNames();%></td></tr>
@@ -52,6 +53,7 @@
     <%--支持异步context部分，可以把请求发给一个asynchronous mode;需要定义可以set()--%>
     <tr><td>-是否支持-</td><td><% request.isAsyncSupported();%></td></tr>
    <%-- <tr><td>-AsyncContext-</td><td><% request.getAsyncContext();%></td></tr>--%>
+    </table>
 </div>
 
 <div>
@@ -59,7 +61,8 @@
     他本身也提供了一个基于http协议的实现实例 供我们使用（可以认为是官方实现版本了）。我们当然也可以基于java servlet标准
     去用其他的协议标准如sftp等等实现request--response需求（信息交互，信息传递功能）--%>
     <h2>httpServletRequest额外提供的方法</h2>
-        <tr><td>参数名</td><td>参数值</td></tr>
+        <table border="2px">
+        <th>参数名</th><th>参数值</th>
         <tr><td>--</td><td><% request.getAuthType();%></td></tr>
         <tr><td>--</td><td><% request.getCookies();%></td></tr>
         <tr><td>--</td><td><% request.getDateHeader("message");%></td></tr>
@@ -89,8 +92,7 @@
 
         <tr><td>--</td><td><% request.isUserInRole("admin");%></td></tr>
         <tr><td>--</td><td><% request.getUserPrincipal();%></td></tr>
-
-
+        </table>
 </div>
 </body>
 </html>
