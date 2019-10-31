@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+        <!--配置数据源-->
+        <bean id="mainDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+            <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+            <property name="url" value="jdbc:mysql://140.143.79.42:3306/lifecycle?useUnicode=true&amp;characterEncoding=UTF-8"/>
+            <property name="username" value="root"/>
+            <property name="password" value="zxg@1991"/>
+        </bean>
+        <!--mybaits和spring整合之后，用整合包的类来建造sqlSessionFactory，同时属性可以直接设置dataSource-->
+        <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+            <property name="dataSource" ref="mainDataSource"/>
+
+        </bean>
+
+</beans>
