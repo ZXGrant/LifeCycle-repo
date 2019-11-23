@@ -43,9 +43,10 @@
         <quartz.version>1.6.1</quartz.version>
         <quartz-new.version>2.3.0</quartz-new.version>
 
-
-        <slf4j.version>1.7.19</slf4j.version>
         <apache-log4j2.version>2.11.0</apache-log4j2.version>
+        <slf4j.version>1.7.19</slf4j.version>
+        <disruptor.version>3.4.2</disruptor.version>
+
 
     </properties>
 
@@ -54,7 +55,7 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.11</version>
+                <version>4.12</version>
                 <scope>test</scope>
             </dependency>
             <!--bom start-->
@@ -123,7 +124,7 @@
                 <scope>import</scope>
                 <version>${spring.version}</version>
             </dependency>
-            <dependency>
+            <!--<dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
                 <version>${spring.version}</version>
@@ -133,7 +134,7 @@
                         <groupId>commons-logging</groupId>
                     </exclusion>
                 </exclusions>
-            </dependency>
+            </dependency>-->
             <!--commons-->
             <dependency>
                 <groupId>commons-collections</groupId>
@@ -172,6 +173,11 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>${disruptor.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
