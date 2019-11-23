@@ -4,6 +4,7 @@
 package com.cyclelife.dao;
 
 import com.cyclelife.domain.CustomerUser;
+import org.springframework.stereotype.Repository;
 
 /**
  * 信息说明
@@ -14,7 +15,8 @@ import com.cyclelife.domain.CustomerUser;
  * ZhangXingguang  2019/10/31       Create
  * </pre>
  */
+@Repository
 public interface CustomerUserDao {
 
-    public CustomerUser findCustomerUserByPhoneNumber(String phoneNumber);
+     CustomerUser findCustomerUserByPhoneNumber(String phoneNumber);
 }

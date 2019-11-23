@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
-        <!--配置数据源-->
+        <!--配置数据源，数据库连接-->
         <bean id="mainDataSource" class="org.apache.commons.dbcp.BasicDataSource">
             <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
             <property name="url" value="jdbc:mysql://140.143.79.42:3306/lifecycle?useUnicode=true&amp;characterEncoding=UTF-8"/>
@@ -12,8 +12,23 @@
         </bean>
         <!--mybaits和spring整合之后，用整合包的类来建造sqlSessionFactory，同时属性可以直接设置dataSource-->
         <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+            <!--注入数据源-->
             <property name="dataSource" ref="mainDataSource"/>
+            <!--注入mybatis的配置文件，原来是连接数据库可以配置到mybatis里的，现在整合到spring平台里，当然就交给spring管理了，mybatis的配置文件就
+            弱化了，但是可以保留配置一些个性化东西。。。其实这个可以测试下看能不能去掉？？？？-->
+            <property name="configLocation" value="classpath:mybatis-config.xml"/>
+            <!--注入mapper映射文件-->
+            <property name="mapperLocations" value="classpath:com/cyclelife/dao/mapper/*.xml"/>
+        </bean>
+        <!-- 配置扫描器，将mybatis的接口实现注入到spring的IOC容器中 -->
+        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+            <property name="basePackage" value="com.cyclelife.dao"/>
+            <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        </bean>
 
+        <!--事务管理器-->
+        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="mainDataSource" />
         </bean>
 
 </beans>

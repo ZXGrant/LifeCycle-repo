@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cyclelife.domain.CustomerUser">
+<mapper namespace="com.cyclelife.dao.CustomerUserDao">
     <select id="findCustomerUserByPhoneNumber" parameterType="String" resultType="com.cyclelife.domain.CustomerUser">
-        select * from customeruser where CellphoneNumber=#{phoneNumber}
+        select * from CustomerUser where CellphoneNumber=#{phoneNumber}
     </select>
 </mapper>
