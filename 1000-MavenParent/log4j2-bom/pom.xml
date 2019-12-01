@@ -30,6 +30,7 @@
         </dependency>
 
         <!--####其实上面两个就是使用log4j2的核心jar包了，下面的应该是锦上添花的东西#############-->
+        <!--用于与slfj保持桥接-->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
@@ -40,6 +41,7 @@
         </dependency>
         <!--LMAX英国金融交易所的一项高并发技术；Disruptor实现了队列的功能，而且是一个有界的队列。所以应用场景自然就是"生产者-消费者"模型了。可以看下JDK中的BlockingQuery是一个FIFO队列，生产者(Producer)发布(Publish)一项事件(Event，消息)时，消费者(Consumer)能够获得通知；
         当队列中没有事件时，消费者会被阻塞，直到生产者发布了新的事件。而Disruptor不仅仅只是这些：-->
+        <!--因为log4j2.xml配置文件使用了异步模式记录，所以需要引入这个依赖-->
         <dependency>
             <groupId>com.lmax</groupId>
             <artifactId>disruptor</artifactId>

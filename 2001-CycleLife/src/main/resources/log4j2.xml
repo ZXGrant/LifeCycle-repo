@@ -5,10 +5,14 @@
 	</Properties>
 
 	<Appenders>
+		<!--输出到控制台的配置-->
 		<Console name="ConsoleAppender">
+			<!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch） -->
+			<ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
+			<!--输出的格式-->
 			<PatternLayout pattern="|%d{yyyy-MM-dd HH:mm:ss.SSS}|%5p|%5t|%l|%marker|%pt{${ModuleName}}%m%n" />
 		</Console>
-
+		<!--异步模式输出到文件-->
 		<RollingRandomAccessFile name="SystemAppender"
 			filename="/logs/zxg/${ModuleName}/${ModuleName}.log"
 			filepattern="/logs/zxg/${ModuleName}/$${date:yyyy-MM-dd}/${ModuleName}.log.%d{yyyy-MM-dd-HH}-%i.log">
@@ -21,11 +25,13 @@
 		</RollingRandomAccessFile>
 	</Appenders>
 
+	<!--定义Loggers,定义了logger，在引用appender，appender才会生效-->
+	<!--全异步模式-->
 	<Loggers>
 		<AsyncLogger name="system" additivity="false" level="INFO" includeLocation="true">
 			<AppenderRef ref="SystemAppender" />
 		</AsyncLogger>
-
+		<!--把输出到控制台的和输出到文件的都输出到控制台，平时开发测试的时候看这方便，上线的项目感觉用上面的输出到文件即可-->
 		<AsyncLogger name="console" additivity="false" level="INFO" includeLocation="true">
 			<AppenderRef ref="SystemAppender" />
 			<AppenderRef ref="ConsoleAppender" />
